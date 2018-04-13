@@ -63,29 +63,45 @@ var app = {
       document.getElementById('btn-line').className = 'active';
     }.bind(this));
 
-    document.getElementById('canvas').addEventListener('mouseDown', function(e) {
+    document.getElementById('canvas').addEventListener('mousedown', function(e) {
       var x = e.offsetX, y = e.offsetY;
+      console.log('mouse-down');
       if(this.selectedTool === TOOL_MOVE &&
         this.selectedLine &&
         this.selectedLine.isNear(x, y, SELECTION_THRESHOLD)
       ) {
+        console.log('enable move');
+        this.startMovePoint = {x,y}
+        this.isMoving = true;
         this.enableMoveHandler();
       }
-    });
+    }.bind(this));
 
-    document.getElementById('canvas').addEventListener('mouseOut', function(e) {
+    document.getElementById('canvas').addEventListener('mouseout', function(e) {
+      const {isMoving} = this;
+      var x = e.offsetX, y = e.offsetY;
+      if(isMoving) {
+        const {startMovePoint:start} = this;
+        console.log('start', start);
+        console.log('cur', {x,y});
+        console.log('delta', {
+          x: start.x-x,
+          y: start.y-y
+        });
+      }
       // if we are moving, cancel it
-    });
+    }.bind(this));
 
-    document.getElementById('canvas').addEventListener('mouseUp', function(e) {
+    document.getElementById('canvas').addEventListener('mouseup', function(e) {
       var x = e.offsetX, y = e.offsetY;
       if(this.selectedTool === TOOL_MOVE &&
         this.selectedLine &&
-        this.selectedLine.isNear(x, y, SELECTION_THRESHOLD)
+        this.isMoving
       ) {
-        this.enableMoveHandler();
+        this.isMoving = false;
+        this.disableMoveHandler();
       }
-    });
+    }.bind(this));
 
     document.getElementById('canvas').addEventListener('click', function(e) {
       var x = e.offsetX, y = e.offsetY;
@@ -142,11 +158,48 @@ var app = {
 
     self.initDone = true;
   },
+
   clearCanvas: function() {
     const canvas = this.getCanvas();
     const ctx = this.getContext();
     ctx.clearRect(0,0,canvas.width, canvas.height);
   },
+
+  disableMoveHandler: function() {
+    console.log('disableMoveListener');
+    document.getElementById('canvas').removeEventListener('mousemove', this.onMoveElement);
+  },
+
+  enableMoveHandler: function() {
+    console.log('enableMoveListener');
+    document.getElementById('canvas').addEventListener('mousemove', this.onMoveElement.bind(this));
+  },
+
+  onMoveElement: function(e) {
+    const {isMoving} = this;
+    var x = e.offsetX, y = e.offsetY;
+    if(isMoving) {
+      const {startMovePoint:start} = this;
+      console.log('start', start);
+      console.log('cur', {x,y});
+      const delta = {
+        x: x - start.x,
+        y: y - start.y
+      };
+      console.log('delta', delta);
+      this.selectedLine.translate(delta.x, delta.y);
+      this.clearCanvas();
+      this.lines.forEach(
+        (line) => {
+          line.drawToCanvas();
+        }
+      );
+      console.log(this.selectedLine);
+      this.startMovePoint = {x,y};
+    }
+    // if we are moving, cancel it
+  },
+
   redrawAll: function () {
     this.clearCanvas();
     this.lines.forEach(
@@ -154,10 +207,12 @@ var app = {
         line.drawToCanvas();
       }
     );
-  }.bind(this),
+  },
+
   getCanvas: function() {
     return document.getElementById('canvas');
-  }.bind(this),
+  },
+
   getContext: function() {
     return this.getCanvas().getContext('2d');
   }

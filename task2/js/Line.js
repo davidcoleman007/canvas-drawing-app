@@ -23,7 +23,7 @@ Line.prototype.drawToCanvas = function() {
   ctx.lineTo(this.x2, this.y2);
   ctx.stroke();
   if(this.selected) {
-    this.drawSelect();
+    this.drawSelect(ctx);
   }
 };
 
@@ -64,6 +64,16 @@ Line.prototype.deSelect = function() {
   this.drawSelect(ctx);
   this.selected = false;
   this.drawToCanvas();
+}
+
+Line.prototype.translate = function(dx, dy) {
+  console.log(this, dx, dy);
+  this.x1 += dx;
+  this.y1 += dy;
+  this.x2 += dx;
+  this.y2 += dy;
+  console.log(this.x1,this.y1, this.x2, this.y2);
+  return this;
 }
 
 Line.prototype.isNear = function(x, y, threshold) {
