@@ -1,0 +1,11 @@
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <path stroke="#000000" id="svg_15" d="m9.913578,5.207914l2.026914,-3.547099l2.026914,3.547099l-4.053828,0z" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <path transform="rotate(90 20.308986663818363,11.726780891418459) " stroke="#000000" id="svg_26" d="m18.28207,13.500329l2.026914,-3.547099l2.026914,3.547099l-4.053828,0z" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <path transform="rotate(180 11.940491676330565,20.09527587890625) " stroke="#000000" id="svg_27" d="m9.913578,21.868821l2.026914,-3.547099l2.026914,3.547099l-4.053828,0z" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <path transform="rotate(-90 3.6480772495269798,11.726783752441408) " stroke="#000000" id="svg_28" d="m1.621163,13.500329l2.026914,-3.547099l2.026914,3.547099l-4.053828,0z" fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="#000000"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_29" y2="18.341455" x2="11.961963" y1="5.381285" x1="11.961963" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_30" y2="11.77177" x2="5.639358" y1="11.77177" x1="18.352447" fill-opacity="null" stroke-opacity="null" stroke-width="1.5" stroke="#000000" fill="none"/>
+ </g>
+</svg>

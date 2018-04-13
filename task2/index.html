@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>canvas drawing app</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #eee;
+    }
+    .app {
+      width: 800px;
+      margin: 20px auto;
+      font-family: Arial;
+      border: 5px solid #ddd;
+      box-shadow: 5px 5px 20px #ccc;
+      background: #fff;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      background: #ddd;
+      padding: 0 10px;
+    }
+    .toolbar > * {
+      margin-right: 2px;
+    }
+    .toolbar > *:last-child {
+      margin-right: 0;
+    }
+    .toolbar button {
+      width: 40px;
+      padding: 5px;
+      border: none;
+      background-color: #eee;
+      cursor: pointer;
+      outline: none;
+    }
+    .toolbar button:hover {
+      background-color: #fff;
+    }
+    .toolbar button.active {
+      background-color: #fff;
+      cursor: default;
+    }
+    .toolbar button img {
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="toolbar">
+      <button id="btn-select" title="Select">
+        <img src="svg/select.svg">
+      </button>
+      <button id="btn-move" title="Move">
+        <img src="svg/move.svg">
+      </button>
+      <button id="btn-line" title="Draw line" class="active">
+        <img src="svg/line.svg">
+      </button>
+      <button id="btn-pencil" title="Pencil">
+        <img src="svg/pencil.svg">
+      </button>
+      <button id="btn-erase" title="Erase">
+        <img src="svg/select-erase.svg">
+      </button>
+    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+  </div>
+  <script src="js/Geometry.js"></script>
+  <script src="js/Line.js"></script>
+  <script src="js/app.js"></script>
+  <script>app.init();</script>
+</body>
+</html>

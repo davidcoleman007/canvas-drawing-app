@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Take-home assignment #2</title>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #eee;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    div.container {
+      width: 100%;
+      max-width: 800px;
+      padding: 10px 20px;
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    code {
+      background: #eee;
+      font-size: 12px;
+      padding: 1px 2px;
+      text-shadow: 1px 1px 0 #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 id="take-home-assignment-2">Take-home assignment #2</h1>
+    <p>In this assignment, you will be working on an existing canvas-based drawing application.</p>
+    <p>In its current state, the application supports a toolbar, with 2 modes:</p>
+    <ul>
+      <li><em>Line</em>: the user can draw a line by clicking at 2 positions on the canvas,</li>
+      <li><em>Erase</em>: the user can erase a line by clicking within 10 pixels of it.</li>
+    </ul>
+    <p>We have 4 new requirements for this drawing application. You should read all the requirements first, but we recommend you to work on them in order.</p>
+    <p>General guidelines:</p>
+    <ul>
+      <li>There is no expectation to support touch devices.</li>
+      <li>You may not use any external libraries.</li>
+      <li>You should not change Geometry.js (which is bug-free).</li>
+      <li>You may need to make minor changes to index.html.</li>
+      <li>You do not need to adjust styles.</li>
+      <li>You can find additional svgs in the svg folder.</li>
+    </ul>
+    <h2 id="new-requirements">New requirements</h2>
+    <h3 id="1-review-code-and-address-issues">1. Review code and address issues</h3>
+    <p>The provided code has multiple issues that you should clean up before adding new functionality.</p>
+    <p>Instructions:</p>
+    <ul>
+      <li>Address issues that you would point out during code review and ask another developer to fix. This includes general best practices, poor design patterns, etc.</li>
+      <li>Keep in mind that there are further requirements below that will need more code changes.</li>
+      <li>We are not expecting a complete refactoring, so for example, you do not need to re-write everything to ES6.</li>
+    </ul>
+    <h3 id="2-make-deletion-more-deterministic">2. Make deletion more deterministic</h3>
+    <p>As is, the <em>Erase</em> mode can make it hard for the user to pick the right line, because if several lines are within 10 pixels of the clicking point, then it is easy to delete the wrong line.</p>
+    <p>To solve this, we want to revamp how deletion works.</p>
+    <p>Requirements:</p>
+    <ul>
+      <li>Add a new <em>Select</em> button to the toolbar
+        <ul>
+          <li>When a line is selected, its ends should show as small circles to provide feedback on the which line is selected.</li>
+          <li>If several lines are within 10 pixels of the clicking point, the closest line should be selected.</li>
+          <li>If no line is within 10 pixels of the clicking point, no line should be selected, and any currently selected line should be de-selected.</li>
+        </ul>
+      </li>
+      <li>Clicking on the <em>Erase</em> button should simply delete the currently selected line and leave the user in <em>Select</em> mode with no line selected.</li>
+    </ul>
+    <h3 id="3-add-new-pencil-mode">3. Add new <em>Pencil</em> mode</h3>
+    <p>To provide a second option to draw, we want to add a new <em>Pencil</em> mode.</p>
+    <p>Requirements:</p>
+    <ul>
+      <li>Add a new <em>Pencil</em> button to the toolbar.</li>
+      <li>In this mode, the user can draw by holding down the left button of their mouse and moving it over the canvas. When the mouse button is released, drawing stops.</li>
+      <li>The drawn object is a series of connected lines to approximate the path of the mouse, with a new segment being added on every mousemove event.</li>
+      <li>In <em>Select</em> mode, the full object becomes selected and can be deleted.</li>
+    </ul>
+    <h3 id="4-support-moving-lines">4. Support moving lines</h3>
+    <p>Lastly, users have asked to be able to move existing objects.</p>
+    <p>Requirements:</p>
+    <ul>
+      <li>Add a new <em>Move</em> button to the toolbar.</li>
+      <li>In this mode, the closest object should become selected when you mouse down to start dragging it.</li>
+      <li>Only the whole object can be moved, not points or segments from the <em>Pencil</em> mode.</li>
+    </ul>
+  </div>
+</body>
+
+</html>
