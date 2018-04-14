@@ -4,6 +4,7 @@ var Line = function(x1, y1, x2, y2, length) {
   this.x2 = x2;
   this.y2 = y2;
   this.length = Geometry.distance(x1, y1, x2, y2);
+  this.type = TOOL_LINE;
 };
 
 Line.prototype.getCanvas = function() {
@@ -76,13 +77,14 @@ Line.prototype.translate = function(dx, dy) {
   return this;
 }
 
-Line.prototype.isNear = function(x, y, threshold) {
-  const dist = this.squareDistanceFrom(x, y) <= threshold * threshold;
+Line.prototype.isNear = function(point, threshold) {
+  const dist = this.squareDistanceFrom(point.x, point.y) <= threshold * threshold;
   console.log(dist);
   return dist;
 };
 
-Line.prototype.distanceFrom = function(x,y) {
+Line.prototype.distanceFrom = function(point) {
+  const {x,y} = point;
   return Math.sqrt(this.squareDistanceFrom(x,y));
 }
 
